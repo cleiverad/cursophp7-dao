@@ -24,9 +24,23 @@ $search = Usuario::search("o");
 echo json_encode($search);
 */
 
-//Carrega um usuario usando o login e senha
+/*Carrega um usuario usando o login e senha
 $usuario = new Usuario();
 $usuario ->login("anderson","222222");
-
 echo $usuario;
+*/
+
+/*Criando um novo usuario
+$aluno = new Usuario("aluno","111111");
+$aluno->insert();
+echo $aluno;
+*/
+
+//Alterando um usuario
+$usuario = new Usuario();
+$usuario->loadById(4);
+$usuario->update("Jose Alves", "123456");
+echo $usuario;
+
+
  ?>
