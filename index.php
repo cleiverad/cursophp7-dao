@@ -36,11 +36,17 @@ $aluno->insert();
 echo $aluno;
 */
 
-//Alterando um usuario
+/*Alterando um usuario
 $usuario = new Usuario();
 $usuario->loadById(4);
 $usuario->update("Jose Alves", "123456");
 echo $usuario;
+*/
 
+//Excluindo um usuario
+$usuario = new Usuario();
+$usuario->loadById(3);
+$usuario->delete();
+echo $usuario;
 
  ?>
