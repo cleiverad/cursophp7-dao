@@ -70,6 +70,49 @@ class Usuario{
 		));
 	}
 
+	public static function getList(){
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM TB_USUARIOS ORDER BY DESLOGIN;");
+
+	}
+
+	public static function search($Login){
+
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM TB_USUARIOS WHERE DESLOGIN LIKE :SEARCH ORDER BY DESLOGIN;", array(
+			':SEARCH'=>"%".$Login."%"
+		));
+
+	}
+
+	public function login($login, $password){
+		$sql = new Sql();
+
+		$results = $sql -> select("select *from tb_usuarios where deslogin = :LOGIN AND dessenha = :PASSWORD", array(
+			":LOGIN"=>$login,
+			":PASSWORD"=>$password
+			));
+
+		if (count($results)>0){
+
+			$row = $results[0];
+
+			$this->setIdusuario($row['idusuario']);
+			$this->setDeslogin($row['deslogin']);
+			$this->setDessenha($row['dessenha']);
+			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+		}
+		else{
+
+			throw new Exception("Login e/ou senha invalidos!");
+			
+		}
+
+	}
+
 }
 
  ?>
